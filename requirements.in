@@ -1,0 +1,13 @@
+dj-database-url
+django==3.2.5
+django-environ
+psycopg2-binary
+python-dotenv
+requests
+sentry_sdk
+django-staff-sso-client
+whitenoise
+gunicorn
+geckoboard.py==1.0.0
+cloudfoundry-client
+python-dateutil
