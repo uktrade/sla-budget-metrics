@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django_prometheus',
     'core',
     'monitor',
 ]
 
 MIDDLEWARE = [
+    #'django_prometheus.middleware.PrometheusBeforeMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -56,7 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'django_prometheus.middleware.PrometheusAfterMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -138,20 +141,13 @@ AUTHBROKER_SCOPES = "read write"
 RESTRICT_ADMIN = env.bool("RESTRICT_ADMIN", True)
 DEBUG=True
 TRUTHY_VALUES = ["on", "yes", "true", "True", "TRUE"]
-REPORT_MODE = os.getenv("REPORT_MODE", "False") in TRUTHY_VALUES
-CHECK_INTERVAL = os.getenv("CHECK_INTERVAL")
 CF_USERNAME = os.getenv("CF_USERNAME")
 CF_PASSWORD = os.getenv("CF_PASSWORD")
 CF_DOMAIN = os.getenv("CF_DOMAIN")
-CF_AUTOSCALE_DOMAIN = os.getenv("CF_AUTOSCALE_DOMAIN")
-MIN_COUNT = os.getenv("MIN_COUNT")
-MAX_COUNT = os.getenv("MAX_COUNT")
-MIN_THRESHOLD = os.getenv("MIN_THRESHOLD")
-MAX_THRESHOLD = os.getenv("MAX_THRESHOLD")
 ORG_GUID = os.getenv("ORG_GUID")
-PD_RKEY = os.getenv("PD_RKEY")
 GECKO_TOKEN = os.getenv("GECKO_TOKEN")
-SLACK_ENABLED = os.getenv("SLACK_ENABLED", "False") in TRUTHY_VALUES
-SLACK_TOKEN = os.getenv("SLACK_TOKEN")
-SLACK_URL = os.getenv("SLACK_URL")
-SLACK_CHANNEL = os.getenv("SLACK_CHANNEL")
+
+PROMETHEUS_EXPORT_MIGRATIONS = os.getenv("PROMETHEUS_EXPORT_MIGRATIONS")
+ROLLING_SLA_WINDOW_SIZE = os.getenv("ROLLING_SLA_WINDOW_SIZE")
+SLA_THRESHOLD = os.getenv("SLA_THRESHOLD")
+PROM_URL = os.getenv("PROM_URL")

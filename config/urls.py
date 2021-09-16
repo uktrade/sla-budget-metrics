@@ -21,4 +21,5 @@ urlpatterns = [
     path('auth/', include('authbroker_client.urls', namespace='authbroker')),
     path('admin/', admin.site.urls),
     url(r'^', include('monitor.urls')),
+    url('', include('django_prometheus.urls')),
 ]
