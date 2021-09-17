@@ -3,6 +3,7 @@ from core.cloudfoundry import cf_get_client
 from django.conf import settings
 from dateutil.relativedelta import relativedelta
 from django.utils import timezone
+import json
 
 import requests
 
@@ -32,7 +33,7 @@ class Command(BaseCommand):
 
         cf_token = cf_client._access_token
 
-        orgs_list = settings.ORG_GUID
+        orgs_list = json.loads(settings.ORG_GUID)
 
         # for org in cf_client.v3.organizations.list():
         #     print(f"{bcolours.OKBLUE}{org['name']}{bcolours.ENDC}")

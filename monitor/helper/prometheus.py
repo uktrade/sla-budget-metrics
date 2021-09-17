@@ -2,7 +2,7 @@ from prometheus_client import CollectorRegistry, Gauge
 import os
 import requests
 import time
-from monitor.models import Applications, Spaces
+from monitor.models import Spaces
 from django.conf import settings
 
 class PrometheusForecast:
@@ -24,16 +24,15 @@ class PrometheusForecast:
         #le_list = ['1']
         for le in le_list:
             for space in Spaces.objects.values_list("space_name").filter(check_enabled=True):
+                results = run_prom(space[0], le, current_time)
+                for response in results:
+                    self.slaStatsMetric.labels(space[0],response['metric']['app'],le).set(response['value'][1])
+
                 no_of_breaches = get_budget_count(space[0], le, current_time)
                 #print(no_of_breaches)
                 for key, value in no_of_breaches.items():
                     #print(key, value)
                     self.slaStatsMetricBreach.labels(space[0],key,le).set(value)
-
-                results = run_prom(space[0], le, current_time)
-
-                for response in results:
-                    self.slaStatsMetric.labels(space[0],response['metric']['app'],le).set(response['value'][1])
 
 
 
@@ -53,10 +52,10 @@ def get_budget_count(space, le, current_time):
     url = f'{settings.PROM_URL}/api/v1/query'
 
     params = {
-    'query': f'(sla_budget{{space="{space}"}} [{settings.ROLLING_SLA_WINDOW_SIZE}h] @{current_time})'
+    'query': f'(sla_requests_percentage{{space="{space}"}} [{settings.ROLLING_SLA_WINDOW_SIZE}h] @{current_time})'
     }
     response = requests.get(url, params=params).json()['data']['result']
-
+    #breakpoint()
     count_list = {}
     for app in response:
         count_items = 0
