@@ -52,17 +52,17 @@ def get_budget_count(space, le, current_time):
     url = f'{settings.PROM_URL}/api/v1/query'
 
     params = {
-    'query': f'(sla_requests_percentage{{space="{space}"}} [{settings.ROLLING_SLA_WINDOW_SIZE}h] @{current_time})'
+    'query': f'(sla_requests_percentage{{space="{space}", le="{le}"}} [{settings.ROLLING_SLA_WINDOW_SIZE}h] @{current_time})'
     }
+
     response = requests.get(url, params=params).json()['data']['result']
-    #breakpoint()
+
     count_list = {}
     for app in response:
         count_items = 0
         for value in (app['values']):
             if float(value[1]) < float(settings.SLA_THRESHOLD):
                 count_items +=1
-
-        count_list[app['metric']['app']] = count_items
-
+            count_list[app['metric']['app']] = count_items
+    
     return count_list
