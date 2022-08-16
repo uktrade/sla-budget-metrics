@@ -1,5 +1,5 @@
 dj-database-url
-django==3.2.14
+django>=3.2.15
 django-environ
 psycopg2-binary
 python-dotenv
