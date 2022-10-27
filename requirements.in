@@ -1,5 +1,5 @@
 dj-database-url
-django>=3.2.15
+django>=3.2.16
 django-environ
 psycopg2-binary
 python-dotenv
@@ -11,3 +11,5 @@ gunicorn
 cloudfoundry-client
 python-dateutil
 django-prometheus
+protobuf>=3.18.3
+oauthlib==3.2.1
