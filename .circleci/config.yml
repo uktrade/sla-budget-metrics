@@ -25,10 +25,3 @@
            paths:
              - ~/cache/pip
 
-  #    - run:
-  #       name: Run checks
-  #       command: ./manage.py check
-
-#     - run:
-#           name: Run tests
-#           command: ./manage.py test
