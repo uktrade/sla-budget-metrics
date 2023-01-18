@@ -16,11 +16,6 @@
              - v1-sla-budget-metrics-
 
        - run:
-           name: export example env
-           command: |
-             cat ~/app/example.env | awk '{print "export " $0}' >> $BASH_ENV
-
-       - run:
            name: Install dependencies
            command: python -m pip install --cache-dir ~/cache/pip -r requirements.txt
 
