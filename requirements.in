@@ -13,3 +13,5 @@ python-dateutil
 django-prometheus
 protobuf>=3.18.3
 oauthlib==3.2.1
+
+certifi>=2022.12.7
