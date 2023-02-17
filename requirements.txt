@@ -25,7 +25,7 @@ cloudfoundry-client==1.23.0
     # via -r requirements.in
 dj-database-url==0.5.0
     # via -r requirements.in
-django==3.2.16
+django==3.2.18
     # via
     #   -r requirements.in
     #   django-staff-sso-client
@@ -47,7 +47,7 @@ multidict==5.1.0
     #   yarl
 oauth2-client==1.2.1
     # via cloudfoundry-client
-oauthlib==3.2.1
+oauthlib==3.2.2
     # via
     #   -r requirements.in
     #   requests-oauthlib
