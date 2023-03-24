@@ -4,7 +4,7 @@ django-environ
 psycopg2-binary
 python-dotenv
 requests
-sentry_sdk
+sentry_sdk==1.14.0
 django-staff-sso-client
 whitenoise
 gunicorn
