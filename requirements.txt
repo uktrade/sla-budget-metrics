@@ -83,7 +83,7 @@ six==1.16.0
     # via
     #   python-dateutil
     #   websocket-client
-sqlparse==0.4.2
+sqlparse==0.4.4
     # via django
 typing-extensions==3.10.0.2
     # via aiohttp
