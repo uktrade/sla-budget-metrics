@@ -1,6 +1,4 @@
 ---
 applications:
   - name: sla-budget-metrics
-    buildpacks:
-      - python_buildpack
     stack: cflinuxfs4
