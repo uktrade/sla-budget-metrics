@@ -1,0 +1,4 @@
+---
+applications:
+  - name: sla-budget-metrics
+    stack: cflinuxfs4
